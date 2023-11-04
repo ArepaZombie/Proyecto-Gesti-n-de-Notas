@@ -33,10 +33,10 @@ public class TestNotas {
 		List<Nota> notas = dao.ListarNotas();
 		
 		for(Nota nota:notas){
-			System.out.print("-");
+			System.out.println("-"+nota.getAlumno().getApellido()+" en "+nota.getSalon().getCurso().getNombre());
 		}
 		
-		
+		//inscribiendo a todos los alumnos
 		
 	}
 

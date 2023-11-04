@@ -1,12 +1,14 @@
 package test;
 
 import model.Alumno;
+import model.Nota;
 import model.Salon;
 import model.Usuario;
 
 import java.util.List;
 
 import dao.DaoAlumno;
+import dao.DaoNota;
 import dao.DaoSalon;
 
 public class TestAlumno {
@@ -30,9 +32,11 @@ public class TestAlumno {
 		//dao.RegistrarAlumno(p);
 		//dao.EliminarAlumno(10);
 		
-		
+		/*
+		//Inscribiendo a todos los alumnos
 		List<Alumno> lista = dao.ListarAlumno(true);
 		DaoSalon daosalon = new DaoSalon();
+		DaoNota daonota = new DaoNota();
 		
 		for(Alumno pro:lista){
 			System.out.println(pro.getIdalumno()+"- "+pro.getApellido()+" "+pro.getNombre());
@@ -40,12 +44,20 @@ public class TestAlumno {
 			if(salones!=null){
 				for(Salon sal:salones){
 					System.out.println(sal.getIdsalon()+" - "+sal.getCurso().getNombre());
+					Nota nota = new Nota();
+					
+					nota.setAlumno(pro);
+					nota.setSalon(sal);
+					
+					daonota.RegistrarNota(nota);
+					
+					System.out.println("Registrado");
 				}
 			}
 		}
 		
 		
-		
+		*/
 		
 		
 	}

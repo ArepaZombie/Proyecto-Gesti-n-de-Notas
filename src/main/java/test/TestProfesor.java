@@ -1,5 +1,6 @@
 package test;
 
+import model.Nota;
 import model.Profesor;
 import model.Salon;
 import model.Usuario;
@@ -37,8 +38,12 @@ public class TestProfesor {
 			System.out.println("---"+pro.getApellido()+"---");
 			for(Salon salon:salones){
 				System.out.println(salon.getIdsalon()+" - "+salon.getCurso().getNombre());
+				List<Nota> notas = salon.getNotas();
+				for(Nota nota:notas){
+					System.out.println("      "+nota.getAlumno().getApellido());
+				}
 			}
-			System.out.println("----------------------");
+			System.out.println("-----------------------------------------------");
 		}
 		
 		
