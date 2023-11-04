@@ -49,6 +49,11 @@ public class DaoProfesor implements IeProfesor {
 		//Buscamos la info
 		Profesor u = BuscarProfesor(id);
 		u.setActivo(!u.getActivo());
+		
+		//Eliminamos el usuario tambien
+		DaoUsuario dao = new DaoUsuario(); 
+		dao.EliminarUsuario(u.getUsuario().getIdusuario());
+		
 		//Actualizamos el objeto
 		em.merge(u);
 		
@@ -68,6 +73,10 @@ public class DaoProfesor implements IeProfesor {
 		EntityManager em=conex.createEntityManager();
 		//iniciamos la transaccion
 		em.getTransaction().begin();
+		
+		//Actualizamos el usuario
+		DaoUsuario dao = new DaoUsuario();
+		dao.ActualizarUsuario(p.getUsuario());
 		
 		//Actualizamos el objeto
 		p.setActivo(true);

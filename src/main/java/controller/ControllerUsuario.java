@@ -33,7 +33,7 @@ public class ControllerUsuario extends HttpServlet {
 		case "Validar": ValidarUsuario(request,response);break;
 		default:break;
 		}
-		System.out.println(value);
+		//System.out.println(value);
 	}
 
 	private void ValidarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,14 +48,22 @@ public class ControllerUsuario extends HttpServlet {
 		String password = request.getParameter("password");
 		u.setPassword(password);
 		
+		
 		//Los mandamos
 		Usuario respuesta = dao.ValidarUsuario(u);
+		String next = "/index.jsp"; 
 		
 		//Revisamos
-		if(respuesta!=null) request.setAttribute("mensaje", "Iniciando sesion");
+		if(respuesta!=null){
+			switch(respuesta.getRol()){
+				case "Admin":next = "/indexAdmin.jsp";break;
+				default:break;
+			}
+			
+		}
 		else request.setAttribute("mensaje", "Datos incorrectos");
 		
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher(next).forward(request, response);
 	}
 
 	/**
