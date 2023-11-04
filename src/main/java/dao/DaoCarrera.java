@@ -7,28 +7,24 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import interfaces.IeProfesor;
-import model.Profesor;
+import interfaces.IeCarrera;
+import model.Carrera;
 
-public class DaoProfesor implements IeProfesor {
+public class DaoCarrera implements IeCarrera {
 
 	@Override
-	public void RegistrarProfesor(Profesor p) {
+	public void RegistrarCarrera(Carrera c) {
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
 		EntityManager em=conex.createEntityManager();
 		//iniciamos la transaccion
 		em.getTransaction().begin();
-		
-		//Ponemos los valores por defecto
-		p.setActivo(true);
-		p.getUsuario().setActivo(true);
-		p.getUsuario().setRol("Profesor");
+
 		
 		//Mandamos los objetos
-		em.persist(p.getUsuario());
-		em.persist(p);
+		c.setActivo(true);
+		em.persist(c);
 		
 		//Confirmamos 
 		em.getTransaction().commit();
@@ -38,7 +34,7 @@ public class DaoProfesor implements IeProfesor {
 	}
 
 	@Override
-	public void EliminarProfesor(int id) {
+	public void EliminarCarrera(int id) {
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
@@ -47,7 +43,7 @@ public class DaoProfesor implements IeProfesor {
 		em.getTransaction().begin();
 		
 		//Buscamos la info
-		Profesor u = BuscarProfesor(id);
+		Carrera u = BuscarCarrera(id);
 		u.setActivo(!u.getActivo());
 		//Actualizamos el objeto
 		em.merge(u);
@@ -61,7 +57,7 @@ public class DaoProfesor implements IeProfesor {
 	}
 
 	@Override
-	public void ActualizarProfesor(Profesor p) {
+	public void ActualizarCarrera(Carrera c) {
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
@@ -70,8 +66,8 @@ public class DaoProfesor implements IeProfesor {
 		em.getTransaction().begin();
 		
 		//Actualizamos el objeto
-		p.setActivo(true);
-		em.merge(p);
+		c.setActivo(true);
+		em.merge(c);
 		
 		//Confirmamos 
 		em.getTransaction().commit();
@@ -80,7 +76,7 @@ public class DaoProfesor implements IeProfesor {
 	}
 
 	@Override
-	public Profesor BuscarProfesor(int id) {
+	public Carrera BuscarCarrera(int id) {
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
@@ -89,17 +85,17 @@ public class DaoProfesor implements IeProfesor {
 		em.getTransaction().begin();
 		
 		//aplicamos JPQL
-		Query consulta = em.createQuery("select p from Profesor p "
-				+ "where p.idprofesor=:x",Profesor.class);
+		Query consulta = em.createQuery("select p from Carrera p "
+				+ "where p.idcarrera=:x",Carrera.class);
 		//pasamos los parametros
 		consulta.setParameter("x", id);
 		
 		
 		//String mensaje;
-		Profesor profe=null;
+		Carrera profe=null;
 		//probamos 
 		try{
-			profe=(Profesor) consulta.getSingleResult();
+			profe=(Carrera) consulta.getSingleResult();
 		}catch(Exception e){
 			
 		}
@@ -109,7 +105,7 @@ public class DaoProfesor implements IeProfesor {
 	}
 
 	@Override
-	public List<Profesor> ListarProfesor(Boolean activos) {
+	public List<Carrera> ListarCarrera(Boolean activos) {
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
@@ -118,9 +114,9 @@ public class DaoProfesor implements IeProfesor {
 		em.getTransaction().begin();
 		
 		//Solicitamos la busqueda
-		Query consulta= em.createQuery("select u from Profesor u where u.activo=:x",Profesor.class);
+		Query consulta= em.createQuery("select u from Carrera u where u.activo=:x",Carrera.class);
 		consulta.setParameter("x", activos);
-		List<Profesor> lista = consulta.getResultList();
+		List<Carrera> lista = consulta.getResultList();
 		//Confirmamos 
 		em.getTransaction().commit();
 		//Cerramos

@@ -1,6 +1,7 @@
 package test;
 
 import model.Profesor;
+import model.Salon;
 import model.Usuario;
 
 import java.util.List;
@@ -32,7 +33,12 @@ public class TestProfesor {
 		List<Profesor> lista = dao.ListarProfesor(true);
 		
 		for(Profesor pro:lista){
-			System.out.println(pro.getIdprofesor()+"- "+pro.getApellido()+" "+pro.getNombre());
+			List<Salon> salones = pro.getSalons();
+			System.out.println("---"+pro.getApellido()+"---");
+			for(Salon salon:salones){
+				System.out.println(salon.getIdsalon()+" - "+salon.getCurso().getNombre());
+			}
+			System.out.println("----------------------");
 		}
 		
 		

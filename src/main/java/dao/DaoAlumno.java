@@ -7,13 +7,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import interfaces.IeProfesor;
-import model.Profesor;
+import interfaces.IeAlumno;
+import model.Alumno;
 
-public class DaoProfesor implements IeProfesor {
+public class DaoAlumno implements IeAlumno {
 
 	@Override
-	public void RegistrarProfesor(Profesor p) {
+	public void RegistrarAlumno(Alumno p) {
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
@@ -24,7 +24,7 @@ public class DaoProfesor implements IeProfesor {
 		//Ponemos los valores por defecto
 		p.setActivo(true);
 		p.getUsuario().setActivo(true);
-		p.getUsuario().setRol("Profesor");
+		p.getUsuario().setRol("Alumno");
 		
 		//Mandamos los objetos
 		em.persist(p.getUsuario());
@@ -38,7 +38,7 @@ public class DaoProfesor implements IeProfesor {
 	}
 
 	@Override
-	public void EliminarProfesor(int id) {
+	public void EliminarAlumno(int id) {
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
@@ -47,7 +47,7 @@ public class DaoProfesor implements IeProfesor {
 		em.getTransaction().begin();
 		
 		//Buscamos la info
-		Profesor u = BuscarProfesor(id);
+		Alumno u = BuscarAlumno(id);
 		u.setActivo(!u.getActivo());
 		//Actualizamos el objeto
 		em.merge(u);
@@ -61,7 +61,7 @@ public class DaoProfesor implements IeProfesor {
 	}
 
 	@Override
-	public void ActualizarProfesor(Profesor p) {
+	public void ActualizarAlumno(Alumno p) {
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
@@ -80,7 +80,7 @@ public class DaoProfesor implements IeProfesor {
 	}
 
 	@Override
-	public Profesor BuscarProfesor(int id) {
+	public Alumno BuscarAlumno(int id) {
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
@@ -89,17 +89,17 @@ public class DaoProfesor implements IeProfesor {
 		em.getTransaction().begin();
 		
 		//aplicamos JPQL
-		Query consulta = em.createQuery("select p from Profesor p "
-				+ "where p.idprofesor=:x",Profesor.class);
+		Query consulta = em.createQuery("select p from Alumno p "
+				+ "where p.idalumno=:x",Alumno.class);
 		//pasamos los parametros
 		consulta.setParameter("x", id);
 		
 		
 		//String mensaje;
-		Profesor profe=null;
+		Alumno profe=null;
 		//probamos 
 		try{
-			profe=(Profesor) consulta.getSingleResult();
+			profe=(Alumno) consulta.getSingleResult();
 		}catch(Exception e){
 			
 		}
@@ -109,7 +109,7 @@ public class DaoProfesor implements IeProfesor {
 	}
 
 	@Override
-	public List<Profesor> ListarProfesor(Boolean activos) {
+	public List<Alumno> ListarAlumno(Boolean activos) {
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
@@ -118,9 +118,9 @@ public class DaoProfesor implements IeProfesor {
 		em.getTransaction().begin();
 		
 		//Solicitamos la busqueda
-		Query consulta= em.createQuery("select u from Profesor u where u.activo=:x",Profesor.class);
+		Query consulta= em.createQuery("select u from Alumno u where u.activo=:x",Alumno.class);
 		consulta.setParameter("x", activos);
-		List<Profesor> lista = consulta.getResultList();
+		List<Alumno> lista = consulta.getResultList();
 		//Confirmamos 
 		em.getTransaction().commit();
 		//Cerramos
