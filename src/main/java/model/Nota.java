@@ -23,15 +23,15 @@ public class Nota implements Serializable {
 
 	private double nota3;
 
-	//bi-directional many-to-one association to Salon
-	@ManyToOne
-	@JoinColumn(name="IDSALON")
-	private Salon salon;
-
 	//bi-directional many-to-one association to Alumno
 	@ManyToOne
 	@JoinColumn(name="IDALUMNO")
 	private Alumno alumno;
+
+	//bi-directional many-to-one association to Salon
+	@ManyToOne
+	@JoinColumn(name="IDSALON")
+	private Salon salon;
 
 	public Nota() {
 	}
@@ -68,20 +68,20 @@ public class Nota implements Serializable {
 		this.nota3 = nota3;
 	}
 
-	public Salon getSalon() {
-		return this.salon;
-	}
-
-	public void setSalon(Salon salon) {
-		this.salon = salon;
-	}
-
 	public Alumno getAlumno() {
 		return this.alumno;
 	}
 
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
+	}
+
+	public Salon getSalon() {
+		return this.salon;
+	}
+
+	public void setSalon(Salon salon) {
+		this.salon = salon;
 	}
 
 }

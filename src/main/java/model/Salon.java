@@ -18,6 +18,8 @@ public class Salon implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idsalon;
 
+	private Boolean activo;
+
 	private String turno;
 
 	//bi-directional many-to-one association to Nota
@@ -43,6 +45,14 @@ public class Salon implements Serializable {
 
 	public void setIdsalon(int idsalon) {
 		this.idsalon = idsalon;
+	}
+
+	public Boolean getActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
 	public String getTurno() {

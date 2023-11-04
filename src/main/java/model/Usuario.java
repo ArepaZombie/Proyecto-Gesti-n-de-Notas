@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -18,19 +17,21 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idusuario;
 
+	private Boolean activo;
+
 	private String password;
 
 	private String rol;
 
 	private String user;
 
-	//bi-directional many-to-one association to Alumno
-	@OneToMany(mappedBy="usuario")
-	private List<Alumno> alumnos;
+	//bi-directional one-to-one association to Alumno
+	@OneToOne(mappedBy="usuario")
+	private Alumno alumno;
 
-	//bi-directional many-to-one association to Profesor
-	@OneToMany(mappedBy="usuario")
-	private List<Profesor> profesors;
+	//bi-directional one-to-one association to Profesor
+	@OneToOne(mappedBy="usuario")
+	private Profesor profesor;
 
 	public Usuario() {
 	}
@@ -41,6 +42,14 @@ public class Usuario implements Serializable {
 
 	public void setIdusuario(int idusuario) {
 		this.idusuario = idusuario;
+	}
+
+	public Boolean getActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
 	public String getPassword() {
@@ -67,48 +76,20 @@ public class Usuario implements Serializable {
 		this.user = user;
 	}
 
-	public List<Alumno> getAlumnos() {
-		return this.alumnos;
+	public Alumno getAlumno() {
+		return this.alumno;
 	}
 
-	public void setAlumnos(List<Alumno> alumnos) {
-		this.alumnos = alumnos;
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
 	}
 
-	public Alumno addAlumno(Alumno alumno) {
-		getAlumnos().add(alumno);
-		alumno.setUsuario(this);
-
-		return alumno;
+	public Profesor getProfesor() {
+		return this.profesor;
 	}
 
-	public Alumno removeAlumno(Alumno alumno) {
-		getAlumnos().remove(alumno);
-		alumno.setUsuario(null);
-
-		return alumno;
-	}
-
-	public List<Profesor> getProfesors() {
-		return this.profesors;
-	}
-
-	public void setProfesors(List<Profesor> profesors) {
-		this.profesors = profesors;
-	}
-
-	public Profesor addProfesor(Profesor profesor) {
-		getProfesors().add(profesor);
-		profesor.setUsuario(this);
-
-		return profesor;
-	}
-
-	public Profesor removeProfesor(Profesor profesor) {
-		getProfesors().remove(profesor);
-		profesor.setUsuario(null);
-
-		return profesor;
+	public void setProfesor(Profesor profesor) {
+		this.profesor = profesor;
 	}
 
 }

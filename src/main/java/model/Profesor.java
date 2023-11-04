@@ -18,14 +18,16 @@ public class Profesor implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idprofesor;
 
+	private Boolean activo;
+
 	private String apellido;
 
 	private String dni;
 
 	private String nombre;
 
-	//bi-directional many-to-one association to Usuario
-	@ManyToOne
+	//bi-directional one-to-one association to Usuario
+	@OneToOne
 	@JoinColumn(name="IDUSUARIO")
 	private Usuario usuario;
 
@@ -42,6 +44,14 @@ public class Profesor implements Serializable {
 
 	public void setIdprofesor(int idprofesor) {
 		this.idprofesor = idprofesor;
+	}
+
+	public Boolean getActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
 	public String getApellido() {

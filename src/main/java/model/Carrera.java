@@ -18,6 +18,8 @@ public class Carrera implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idcarrera;
 
+	private Boolean activo;
+
 	private String nombre;
 
 	//bi-directional many-to-one association to Alumno
@@ -37,6 +39,14 @@ public class Carrera implements Serializable {
 
 	public void setIdcarrera(int idcarrera) {
 		this.idcarrera = idcarrera;
+	}
+
+	public Boolean getActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
 	public String getNombre() {

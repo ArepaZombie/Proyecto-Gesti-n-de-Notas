@@ -18,6 +18,8 @@ public class Curso implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idcurso;
 
+	private Boolean activo;
+
 	private int ciclo;
 
 	private String nombre;
@@ -40,6 +42,14 @@ public class Curso implements Serializable {
 
 	public void setIdcurso(int idcurso) {
 		this.idcurso = idcurso;
+	}
+
+	public Boolean getActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
 	public int getCiclo() {
