@@ -5,7 +5,7 @@ import java.util.List;
 import dao.DaoUsuario;
 import model.Usuario;
 
-public class UsuarioTest {
+public class TestUsuario {
 	public static void main(String[] args){
 		Usuario usuario = new Usuario();
 		DaoUsuario crud = new DaoUsuario();
