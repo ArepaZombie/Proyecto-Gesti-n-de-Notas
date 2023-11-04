@@ -30,8 +30,8 @@ public class DaoSalon implements IeSalon {
 		DaoProfesor daoprofe = new DaoProfesor();
 		DaoCurso daocurso = new DaoCurso();
 		
-		Profesor profe = daoprofe.BuscarProfesor(c.getProfesor().getIdprofesor());
-		Curso curso = daocurso.BuscarCurso(c.getCurso().getIdcurso()) ;
+		c.setProfesor(daoprofe.BuscarProfesor(c.getProfesor().getIdprofesor()));
+		c.setCurso(daocurso.BuscarCurso(c.getCurso().getIdcurso()));
 		
 		//Mandamos los objetos
 		c.setActivo(true);
