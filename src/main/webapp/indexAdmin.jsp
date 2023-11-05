@@ -25,15 +25,15 @@
 		</a>
 	</div>
 	<div class="row">
-		<a class="btn btn-outline-primary col m-1 btn-lg" href="./listarCarreras.jsp">
+		<a class="btn btn-outline-success col m-1 btn-lg" href="ControllerCarrera?value=Listar">
 			<i class="fa-solid fa-graduation-cap"></i>
 			Carreras
 		</a>
-		<a class="btn btn-outline-success col m-1 btn-lg" href="./listarCursos.jsp">
+		<a class="btn btn-outline-primary col m-1 btn-lg" href="ControllerCurso?value=Listar">
 			<i class="fa-solid fa-book"></i>
 			Cursos
 		</a>
-		<a class="btn btn-outline-danger  col m-1 btn-lg" href="./listarSalones.jsp">
+		<a class="btn btn-outline-danger  col m-1 btn-lg" href="ControllerSalon?value=Listar">
 			<i class="fa-solid fa-chalkboard"></i>
 			Salones
 		</a>
