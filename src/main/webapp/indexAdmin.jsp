@@ -25,15 +25,15 @@
 		</a>
 	</div>
 	<div class="row">
-		<a class="btn btn-outline-success col m-1 btn-lg" href="ControllerCarrera?value=Listar">
+		<a class="btn btn-outline-success col m-1 btn-lg" href="ControllerCarreras?value=Listar">
 			<i class="fa-solid fa-graduation-cap"></i>
 			Carreras
 		</a>
-		<a class="btn btn-outline-primary col m-1 btn-lg" href="ControllerCurso?value=Listar">
+		<a class="btn btn-outline-primary col m-1 btn-lg" href="ControllerCursos?value=Listar">
 			<i class="fa-solid fa-book"></i>
 			Cursos
 		</a>
-		<a class="btn btn-outline-danger  col m-1 btn-lg" href="ControllerSalon?value=Listar">
+		<a class="btn btn-outline-danger  col m-1 btn-lg" href="ControllerSalones?value=Listar">
 			<i class="fa-solid fa-chalkboard"></i>
 			Salones
 		</a>

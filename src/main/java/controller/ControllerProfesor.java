@@ -33,12 +33,12 @@ public class ControllerProfesor extends HttpServlet {
 		String value = request.getParameter("value");
 		
 		switch(value){
-		case "Listar": ListarProfesores(request,response);break;
-		case "Registrar": RegistrarProfesor(request,response);break;
-		case "Buscar": BuscarProfesor(request,response);break;
-		case "Actualizar": ActualizarProfesor(request,response);break;
-		case "Borrar": BorrarProfesor(request,response);break;
-		default:break;
+			case "Listar": ListarProfesores(request,response);break;
+			case "Registrar": RegistrarProfesor(request,response);break;
+			case "Buscar": BuscarProfesor(request,response);break;
+			case "Actualizar": ActualizarProfesor(request,response);break;
+			case "Borrar": BorrarProfesor(request,response);break;
+			default:break;
 		}
 		//System.out.println(value);
 	}

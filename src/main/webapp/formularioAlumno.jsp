@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 
 <%@page import="java.util.*" %>
-<%@page import="model.Profesor" %>
 <%@page import="model.Usuario" %>
 <%@page import="model.Carrera" %>
 
@@ -23,7 +22,7 @@
 <a href="./indexAdmin.jsp" class="btn btn-outline-light m-1 py-2 position-absolute top-0 start-0">
 <i class="fa-solid fa-house"></i></a>
 
-<h2 class="mt-4 text-center">Registrar Nuevo Profesor</h2>
+<h2 class="mt-4 text-center">Registrar Nuevo Alumno</h2>
 
 <div class="container ">
         <div class="row justify-content-center d-flex align-items-center">

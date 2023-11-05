@@ -12,22 +12,19 @@ import dao.DaoCarrera;
 import model.Carrera;
 
 /**
- * Servlet implementation class ControllerCarrera
+ * Servlet implementation class ControllerCarreras
  */
-public class ControllerCarrera extends HttpServlet {
+public class ControllerCarreras extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControllerCarrera() {
+    public ControllerCarreras() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String value = request.getParameter("value");
 		
@@ -42,7 +39,6 @@ public class ControllerCarrera extends HttpServlet {
 		//System.out.println(value);
 	}
 
-    
     private void BorrarCarrera(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	//instanciamos las clases
     	DaoCarrera dao = new DaoCarrera();
@@ -54,7 +50,7 @@ public class ControllerCarrera extends HttpServlet {
     	dao.EliminarCarrera(id);
     	
     	//Mandamos la data
-		request.setAttribute("mensaje", "Carrera eliminado!");
+		request.setAttribute("mensaje", "Carrera eliminada!");
 		
 		//Nos devolvemos al listado
 		ListarCarreras(request, response);

@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 
 <%@page import="java.util.*" %>
-<%@page import="model.Carrera" %>
+<%@page import="model.Salon" %>
 
 
 
@@ -10,7 +10,7 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Gestión - Carreras</title>
+    <title>Sistema de Gestión - Salons</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,7 +22,7 @@
 <a href="./indexAdmin.jsp" class="btn btn-outline-light m-1 py-2 position-absolute top-0 start-0">
 <i class="fa-solid fa-house"></i></a>
 
-<a href="ControllerCarreras?value=Listar&trash=true" class="btn btn-outline-light m-1 py-2 position-absolute top-0 end-0">
+<a href="ControllerSalones?value=Listar&trash=true" class="btn btn-outline-light m-1 py-2 position-absolute top-0 end-0">
 <i class="fa-solid fa-trash-can"></i></a>
 
 
@@ -31,39 +31,45 @@ if(mensaje!=null){%>
 <p align="center" class="alert alert-success p-0 w-75 mx-auto"><%=mensaje %> </p>
 <%} %>
 
-<h2 class="mt-4">Lista de Carreras</h2>
-<a class="btn btn-success mx-auto my-1" 
-	href="formularioCarrera.jsp">
+<h2 class="mt-4">Lista de Salones</h2>
+<a class="btn btn-success mx-auto my-1" align="center"
+	href="ControllerSalones?value=PreRegistrar">
 	<i class="fa-solid fa-circle-plus"></i>
-	Nueva Carrera
+	Nuevo Salón
 </a>
 
-<div class="container mx-auto text-center">
+<div class="container w-75automx-5">
 <table class="table table-striped table-dark table-hover table-bordered rounded align-middle">
 
 	<tr>
-		<th>Nombre</th>
-		<th>Cursos</th>
-		<th>Acciones</th>
+		<th class="text-center">Código</th>
+		<th>Curso</th>
+		<th>Profesor</th>
+		<th>Turno</th>
+		<th class="text-center">Alumnos</th>
+		<th class="text-center">Acciones</th>
 	</tr>
 <%
-List<Carrera> listado = (List<Carrera>)request.getAttribute("listado");
+List<Salon> listado = (List<Salon>)request.getAttribute("listado");
 if(listado!=null){
-	for(Carrera p:listado){
+	for(Salon p:listado){
 		%>
-	<tr >
-		<td><%=p.getNombre() %> </td>
+	<tr >	
+		<td class="text-center"><%=p.getIdsalon() %> </td>
+		<td><%=p.getCurso().getNombre() %> </td>
+		<td><%=p.getProfesor().getNombre() %> <%=p.getProfesor().getApellido() %> </td>
+		<td><%=p.getTurno() %> </td>
 		<td class="text-center">
 			<a class="btn btn-outline-light btn-sm">
-			<i class="fa-solid fa-chalkboard"></i>
-				Ver Salones
+			<i class="fa-solid fa-user"></i>
+				Ver Alumnos
 			</a>
 		</td>
 		<td class="text-center">		
-			<a class="btn btn-primary btn-sm" href="ControllerCarreras?value=Buscar&id=<%=p.getIdcarrera()%>">
+			<a class="btn btn-primary btn-sm" href="ControllerSalones?value=Buscar&id=<%=p.getIdsalon()%>">
 				<i class="fa-solid fa-pen-to-square"></i>			
 			</a>
-			<a class="btn btn-danger btn-sm" href="ControllerCarreras?value=Borrar&id=<%=p.getIdcarrera()%>"
+			<a class="btn btn-danger btn-sm" href="ControllerSalones?value=Borrar&id=<%=p.getIdsalon()%>"
 			onclick="return confirm('¿Estás seguro de que deseas eliminar?');">
 				<i class="fa-solid fa-trash-can"></i>			
 			</a>

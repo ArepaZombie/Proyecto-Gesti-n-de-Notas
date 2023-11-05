@@ -8,30 +8,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+import dao.DaoCurso;
+import dao.DaoProfesor;
 import dao.DaoSalon;
-import dao.DaoCarrera;
-import model.Salon;
-import model.Carrera;
 import model.Curso;
 import model.Profesor;
+import model.Salon;
 
 /**
- * Servlet implementation class ControllerSalon
+ * Servlet implementation class ControllerSalones
  */
-public class ControllerSalon extends HttpServlet {
+public class ControllerSalones extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControllerSalon() {
+    public ControllerSalones() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String value = request.getParameter("value");
 		
@@ -48,9 +46,13 @@ public class ControllerSalon extends HttpServlet {
 	}
 
 	private void PreRegistrarSalon(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DaoCarrera dao = new DaoCarrera();
-		List<Carrera> carreras = dao.ListarCarrera(true);
-		request.setAttribute("carreras", carreras);
+		DaoCurso dao = new DaoCurso();
+		List<Curso> cursos = dao.ListarCurso(true);
+		request.setAttribute("cursos", cursos);
+		
+		DaoProfesor daop = new DaoProfesor();
+		List<Profesor> profesores = daop.ListarProfesor(true);
+		request.setAttribute("profesores", profesores);
 		
 		request.getRequestDispatcher("formularioSalon.jsp").forward(request, response);    
 	}
@@ -108,12 +110,16 @@ public class ControllerSalon extends HttpServlet {
     	Salon p = dao.BuscarSalon(id);
     	
     	//Enviamos la info
-    	request.setAttribute("Salon", p);
+    	request.setAttribute("salon", p);
 		
-    	//Buscamos la lista de carreras
-    	DaoCarrera daoc = new DaoCarrera();
-		List<Carrera> carreras = daoc.ListarCarrera(true);
-		request.setAttribute("carreras", carreras);
+    	//Listas para los combos
+    	DaoCurso daoc = new DaoCurso();
+		List<Curso> cursos = daoc.ListarCurso(true);
+		request.setAttribute("cursos", cursos);
+		
+		DaoProfesor daop = new DaoProfesor();
+		List<Profesor> profesores = daop.ListarProfesor(true);
+		request.setAttribute("profesores", profesores);
     	
     	//Vamos al formulario
     	request.getRequestDispatcher("actualizarSalon.jsp").forward(request, response);
@@ -160,11 +166,14 @@ public class ControllerSalon extends HttpServlet {
 		request.getRequestDispatcher("listarSalones.jsp").forward(request, response);
 	}
 
+    
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

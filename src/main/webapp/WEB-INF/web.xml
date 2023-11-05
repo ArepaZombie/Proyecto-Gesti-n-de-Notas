@@ -22,6 +22,24 @@
   	<description></description>
   	<servlet-class>controller.ControllerAlumno</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerCarreras</servlet-name>
+  	<display-name>ControllerCarreras</display-name>
+  	<description></description>
+  	<servlet-class>controller.ControllerCarreras</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ControllerCursos</servlet-name>
+  	<display-name>ControllerCursos</display-name>
+  	<description></description>
+  	<servlet-class>controller.ControllerCursos</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ControllerSalones</servlet-name>
+  	<display-name>ControllerSalones</display-name>
+  	<description></description>
+  	<servlet-class>controller.ControllerSalones</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerUsuario</servlet-name>
   	<url-pattern>/ControllerUsuario</url-pattern>
@@ -33,5 +51,17 @@
   <servlet-mapping>
   	<servlet-name>ControllerAlumno</servlet-name>
   	<url-pattern>/ControllerAlumno</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerCarreras</servlet-name>
+  	<url-pattern>/ControllerCarreras</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerCursos</servlet-name>
+  	<url-pattern>/ControllerCursos</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerSalones</servlet-name>
+  	<url-pattern>/ControllerSalones</url-pattern>
   </servlet-mapping>
 </web-app>

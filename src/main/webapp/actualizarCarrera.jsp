@@ -28,7 +28,7 @@
         <div class="row justify-content-center d-flex align-items-center">
             <div class="col-md-4">
                 <form class="p-4 rounded-4 bg-primary bg-opacity-25" 
-                method="post" action="ControllerCarrera"> 
+                method="post" action="ControllerCarreras"> 
                     <h3 class="text-center mb-4">Datos de la Carrera</h3>
                     
                     <div class="form-group">
@@ -40,7 +40,7 @@
                     <input type="hidden" name="idcarrera"  value="<%=p.getIdcarrera() %>">
                     
                     <div class="text-center">
-                    	<button type="submit" name="value" value="Registrar" class="btn btn-success mt-3 mx-auto">Registrar</button>
+                    	<button type="submit" name="value" value="Actualizar" class="btn btn-primary mt-3 mx-auto">Actualizar</button>
                     </div>
                 </form>
             </div>
