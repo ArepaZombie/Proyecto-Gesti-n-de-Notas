@@ -19,7 +19,7 @@
 			<i class="fa-solid fa-chalkboard-user"></i>
 			Profesores
 		</a>
-		<a class="btn btn-danger  col m-1 btn-lg" href="./listarAlumnos.jsp">
+		<a class="btn btn-danger  col m-1 btn-lg" href="ControllerAlumno?value=Listar">
 			<i class="fa-solid fa-user"></i>
 			Alumnos
 		</a>
