@@ -153,11 +153,66 @@ public class DaoSalon implements IeSalon {
 				"JOIN c.carrera carrera " +
 				"WHERE c.ciclo = :y " +
 				"AND carrera.idcarrera = :z "
-				+ "AND s.turno=:x"
+				+ "AND s.turno=:x "
+				+ "AND s.activo=true"
 				,Salon.class);
 		consulta.setParameter("x", turno);
 		consulta.setParameter("y", ciclo);
 		consulta.setParameter("z", idcarrera);
+		List<Salon> lista = consulta.getResultList();
+		//Confirmamos 
+		em.getTransaction().commit();
+		//Cerramos
+		em.close();
+		
+		//Retornamos
+		return lista;
+	}
+
+	@Override
+	public List<Salon> ListarSalonesProfesor(int idprofesor) {
+		//conexión con unidad de persistencia
+				EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
+				//gestionamos la entidad
+				EntityManager em=conex.createEntityManager();
+				//iniciamos la transaccion
+				em.getTransaction().begin();
+				
+				//Solicitamos la busqueda
+				Query consulta= em.createQuery("SELECT s " +
+						"FROM Salon s " +
+						"JOIN s.profesor p " + 
+						"WHERE p.idprofesor = :x "
+						+ "AND s.activo=true"
+						,Salon.class);
+				consulta.setParameter("x", idprofesor);
+				List<Salon> lista = consulta.getResultList();
+				//Confirmamos 
+				em.getTransaction().commit();
+				//Cerramos
+				em.close();
+				
+				//Retornamos
+				return lista;
+	}
+
+	@Override
+	public List<Salon> ListarSalonesCurso(int idcurso) {
+		//conexión con unidad de persistencia
+		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
+		//gestionamos la entidad
+		EntityManager em=conex.createEntityManager();
+		//iniciamos la transaccion
+		em.getTransaction().begin();
+		
+		//Solicitamos la busqueda
+		Query consulta= em.createQuery("SELECT s " +
+				"FROM Salon s " +
+				"JOIN s.curso c " + 
+				"WHERE c.idcurso = :x "
+				+ "AND s.activo=true"
+				,Salon.class);
+		consulta.setParameter("x", idcurso);
 		List<Salon> lista = consulta.getResultList();
 		//Confirmamos 
 		em.getTransaction().commit();

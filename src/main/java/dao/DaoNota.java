@@ -26,8 +26,8 @@ public class DaoNota implements IeNotas {
 		//Buscamos la info del salon y el alumno
 		DaoSalon dao= new DaoSalon();
 		DaoAlumno daoa= new DaoAlumno();
-		Salon salon = dao.BuscarSalon(c.getSalon().getIdsalon());
-		Alumno alumno = daoa.BuscarAlumno(c.getAlumno().getIdalumno());
+		Salon salon = dao.BuscarSalon(c.getId().getIdsalon());
+		Alumno alumno = daoa.BuscarAlumno(c.getId().getIdalumno());
 		
 		c.setSalon(salon);
 		c.setAlumno(alumno);
@@ -61,8 +61,8 @@ public class DaoNota implements IeNotas {
 		//Buscamos la info del salon y el alumno
 		DaoSalon dao= new DaoSalon();
 		DaoAlumno daoa= new DaoAlumno();
-		c.setSalon(dao.BuscarSalon(c.getSalon().getIdsalon()));
-		c.setAlumno(daoa.BuscarAlumno(c.getAlumno().getIdalumno()));
+		c.setSalon(dao.BuscarSalon(c.getId().getIdsalon()));
+		c.setAlumno(daoa.BuscarAlumno(c.getId().getIdalumno()));
 		
 		//Actualizamos el objeto
 		em.merge(c);
@@ -93,16 +93,16 @@ public class DaoNota implements IeNotas {
 		
 		
 		//String mensaje;
-		Nota profe=null;
+		Nota nota=null;
 		//probamos 
 		try{
-			profe=(Nota) consulta.getSingleResult();
+			nota=(Nota) consulta.getSingleResult();
 		}catch(Exception e){
 			
 		}
 		//Cerramos
 		em.close();
-		return profe;
+		return nota;
 	}
 
 	@Override
@@ -123,6 +123,37 @@ public class DaoNota implements IeNotas {
 		em.close();
 		
 		//Retornamos
+		return lista;
+	}
+
+
+	@Override
+	public List<Nota> ListarNotasxAlumno(int idalumno) {
+		//conexión con unidad de persistencia
+		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
+		//gestionamos la entidad
+		EntityManager em=conex.createEntityManager();
+		//iniciamos la transaccion
+		em.getTransaction().begin();
+		
+		//aplicamos JPQL
+		Query consulta = em.createQuery("select p from Nota p "
+				+ "join p.alumno a  "
+				+ "where a.idalumno=:y",Nota.class);
+		//pasamos los parametros
+		consulta.setParameter("y", idalumno);
+		
+		
+		//String mensaje;
+		List<Nota> lista=null;
+		//probamos 
+		try{
+			lista=(List<Nota>) consulta.getResultList();
+		}catch(Exception e){
+			
+		}
+		//Cerramos
+		em.close();
 		return lista;
 	}
 

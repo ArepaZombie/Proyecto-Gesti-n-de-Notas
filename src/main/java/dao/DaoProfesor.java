@@ -74,6 +74,11 @@ public class DaoProfesor implements IeProfesor {
 		//iniciamos la transaccion
 		em.getTransaction().begin();
 		
+		//Ponemos los valores por defecto
+		p.setActivo(true);
+		p.getUsuario().setActivo(true);
+		p.getUsuario().setRol("Profesor");
+		
 		//Actualizamos el usuario
 		DaoUsuario dao = new DaoUsuario();
 		dao.ActualizarUsuario(p.getUsuario());

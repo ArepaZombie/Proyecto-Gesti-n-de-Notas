@@ -58,7 +58,8 @@ if(listado!=null){
 		<td><%=p.getCarrera().getNombre() %> </td>
 		<td><%=p.getCiclo() %> </td>
 		<td class="text-center">
-			<a class="btn btn-outline-light btn-sm">
+			<a class="btn btn-outline-light btn-sm"
+			href="ControllerSalones?value=Curso&id=<%=p.getIdcurso()%>">
 			<i class="fa-solid fa-chalkboard"></i>
 				Ver Salones
 			</a>

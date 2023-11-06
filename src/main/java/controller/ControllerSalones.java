@@ -38,11 +38,40 @@ public class ControllerSalones extends HttpServlet {
 			case "Registrar": RegistrarSalon(request,response);break;
 			case "PreRegistrar": PreRegistrarSalon(request,response);break;
 			case "Buscar": BuscarSalon(request,response);break;
+			case "Profesor": ListarSalonesxProfesor(request,response);break;
+			case "Curso": ListarSalonesxCurso(request,response);break;
 			case "Actualizar": ActualizarSalon(request,response);break;
 			case "Borrar": BorrarSalon(request,response);break;
 			default:break;
 		}
 		//System.out.println(value);
+	}
+
+	private void ListarSalonesxCurso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//instanciamos el dao
+    	DaoSalon dao = new DaoSalon();
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+    	//Obtenemos la data
+    	List<Salon> listado = dao.ListarSalonesCurso(id);
+
+    	//La mandamos a la vista
+    	request.setAttribute("listado", listado);
+		request.getRequestDispatcher("listarSalones.jsp").forward(request, response);
+	}
+
+	private void ListarSalonesxProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//instanciamos el dao
+    	DaoSalon dao = new DaoSalon();
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+    	//Obtenemos la data
+    	List<Salon> listado = dao.ListarSalonesProfesor(id);
+
+    	//La mandamos a la vista
+    	request.setAttribute("listado", listado);
+		request.getRequestDispatcher("listarSalones.jsp").forward(request, response);
+		
 	}
 
 	private void PreRegistrarSalon(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

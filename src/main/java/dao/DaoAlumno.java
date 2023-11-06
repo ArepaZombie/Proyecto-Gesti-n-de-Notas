@@ -73,6 +73,11 @@ public class DaoAlumno implements IeAlumno {
 		//iniciamos la transaccion
 		em.getTransaction().begin();
 		
+		//Ponemos los valores por defecto
+		p.setActivo(true);
+		p.getUsuario().setActivo(true);
+		p.getUsuario().setRol("Alumno");
+		
 		//Actualizamos el usuario
 		DaoUsuario dao = new DaoUsuario();
 		dao.ActualizarUsuario(p.getUsuario());
@@ -128,6 +133,32 @@ public class DaoAlumno implements IeAlumno {
 		//Solicitamos la busqueda
 		Query consulta= em.createQuery("select u from Alumno u where u.activo=:x",Alumno.class);
 		consulta.setParameter("x", activos);
+		List<Alumno> lista = consulta.getResultList();
+		//Confirmamos 
+		em.getTransaction().commit();
+		//Cerramos
+		em.close();
+		
+		//Retornamos
+		return lista;
+	}
+
+	@Override
+	public List<Alumno> ListarAlumnoxSalon(int idsalon) {
+		//conexión con unidad de persistencia
+		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
+		//gestionamos la entidad
+		EntityManager em=conex.createEntityManager();
+		//iniciamos la transaccion
+		em.getTransaction().begin();
+		
+		//Solicitamos la busqueda
+		Query consulta= em.createQuery("select u from Alumno u "
+				+ "join u.notas n "
+				+ "join n.salon s "
+				+ "where u.activo=true "
+				+ "and s.idsalon=:x",Alumno.class);
+		consulta.setParameter("x", idsalon);
 		List<Alumno> lista = consulta.getResultList();
 		//Confirmamos 
 		em.getTransaction().commit();

@@ -66,7 +66,8 @@ if(listado!=null){
 		<td><%=p.getCiclo() %> </td>
 		<td><%=p.getTurno() %> </td>
 		<td class="text-center">
-			<a class="btn btn-outline-light btn-sm">
+			<a class="btn btn-outline-light btn-sm"
+			href="ControllerNotas?value=Alumno&id=<%=p.getIdalumno()%>">
 			<i class="fa-regular fa-file-lines"></i>
 				Ver Notas
 			</a>

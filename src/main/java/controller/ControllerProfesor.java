@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DaoProfesor;
+import dao.DaoSalon;
+import model.Alumno;
+import model.Nota;
 import model.Profesor;
+import model.Salon;
 import model.Usuario;
 
 /**
@@ -38,13 +42,53 @@ public class ControllerProfesor extends HttpServlet {
 			case "Buscar": BuscarProfesor(request,response);break;
 			case "Actualizar": ActualizarProfesor(request,response);break;
 			case "Borrar": BorrarProfesor(request,response);break;
+			case "Sesion": IniciarSesionProfesor(request,response);break;
+			case "Notas": ListaNotas(request,response);break;
 			default:break;
 		}
 		//System.out.println(value);
 	}
 
     
-    private void BorrarProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void ListaNotas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	//instanciamos las clases
+    	DaoProfesor dao = new DaoProfesor();
+
+    	//Buscamos la info
+    	int id = Integer.parseInt(request.getParameter("id"));
+    	int idsalon = Integer.parseInt(request.getParameter("salon"));
+    	Profesor p = dao.BuscarProfesor(id);
+		
+    	Salon salon = null;
+    	for(Salon s:p.getSalons()){
+    		if (s.getIdsalon()==idsalon) salon = s;
+    	}
+    	
+    	//Mandamos la data
+		request.setAttribute("profesor", p);
+		request.setAttribute("salon", salon);
+		
+		//Vamos al index
+		request.getRequestDispatcher("listarNotasProfesor.jsp").forward(request, response);
+		
+	}
+
+	private void IniciarSesionProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	//instanciamos las clases
+    	DaoProfesor dao = new DaoProfesor();
+
+    	//Buscamos la info
+    	int id = Integer.parseInt(request.getParameter("id"));
+    	Profesor p = dao.BuscarProfesor(id);
+		
+    	//Mandamos la data
+		request.setAttribute("profesor", p);
+		
+		//Vamos al index
+		request.getRequestDispatcher("indexProfesor.jsp").forward(request, response);
+	}
+
+	private void BorrarProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	//instanciamos las clases
     	DaoProfesor dao = new DaoProfesor();
 

@@ -132,4 +132,29 @@ public class DaoCurso implements IeCurso {
 		return lista;
 	}
 
+	@Override
+	public List<Curso> ListarCursoxCarrera(int idcarrera) {
+		//conexión con unidad de persistencia
+		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
+		//gestionamos la entidad
+		EntityManager em=conex.createEntityManager();
+		//iniciamos la transaccion
+		em.getTransaction().begin();
+		
+		//Solicitamos la busqueda
+		Query consulta= em.createQuery("select u from Curso u "
+				+ "JOIN u.carrera c "
+				+ "where u.activo=true "
+				+ "and c.idcarrera=:x",Curso.class);
+		consulta.setParameter("x", idcarrera);
+		List<Curso> lista = consulta.getResultList();
+		//Confirmamos 
+		em.getTransaction().commit();
+		//Cerramos
+		em.close();
+		
+		//Retornamos
+		return lista;
+	}
+
 }

@@ -60,7 +60,8 @@ if(listado!=null){
 		<td><%=p.getApellido() %> </td>
 		<td><%=p.getDni() %> </td>
 		<td class="text-center">
-			<a class="btn btn-outline-light btn-sm">
+			<a class="btn btn-outline-light btn-sm"
+			href="ControllerSalones?value=Profesor&id=<%=p.getIdprofesor()%>">
 			<i class="fa-solid fa-chalkboard"></i>
 				Ver Salones
 			</a>

@@ -25,8 +25,8 @@ public class TestCurso {
 		//dao.EliminarCurso(248);
 		//dao.ActualizarCurso(c);
 		
-		List<Curso> lista = dao.ListarCurso(true);
-		
+		//List<Curso> lista = dao.ListarCurso(true);
+		List<Curso> lista = dao.ListarCursoxCarrera(1);
 		for(Curso cur:lista){
 			System.out.println(cur.getIdcurso()+"- "+cur.getNombre()+" de "+cur.getCarrera().getNombre());
 		}

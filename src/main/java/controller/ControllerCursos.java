@@ -32,6 +32,7 @@ public class ControllerCursos extends HttpServlet {
 		
 		switch(value){
 			case "Listar": ListarCursos(request,response);break;
+			case "Carrera": ListarCursosxCarrera(request,response);break;
 			case "Registrar": RegistrarCurso(request,response);break;
 			case "PreRegistrar": PreRegistrarCurso(request,response);break;
 			case "Buscar": BuscarCurso(request,response);break;
@@ -40,6 +41,21 @@ public class ControllerCursos extends HttpServlet {
 			default:break;
 		}
 		//System.out.println(value);
+	}
+
+	private void ListarCursosxCarrera(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//instanciamos el dao
+    	DaoCurso dao = new DaoCurso();
+		int idcarrera = Integer.parseInt( request.getParameter("id"));
+    	
+    	//Obtenemos la data
+    	List<Curso> listado = dao.ListarCursoxCarrera(idcarrera);
+
+    	//La mandamos a la vista
+    	request.setAttribute("listado", listado);
+		request.getRequestDispatcher("listarCursos.jsp").forward(request, response);
+
+		
 	}
 
 	private void PreRegistrarCurso(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

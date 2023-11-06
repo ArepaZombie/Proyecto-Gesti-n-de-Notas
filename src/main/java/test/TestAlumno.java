@@ -32,6 +32,12 @@ public class TestAlumno {
 		//dao.RegistrarAlumno(p);
 		//dao.EliminarAlumno(10);
 		
+		List<Alumno> lista = dao.ListarAlumnoxSalon(1006);
+		
+		for(Alumno a:lista){
+			System.out.print("-");
+		}
+		
 		/*
 		//Inscribiendo a todos los alumnos
 		List<Alumno> lista = dao.ListarAlumno(true);

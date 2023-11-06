@@ -10,4 +10,5 @@ public interface IeAlumno {
 	public void ActualizarAlumno(Alumno a);
 	public Alumno BuscarAlumno(int id);
 	public List<Alumno> ListarAlumno(Boolean activos);
+	public List<Alumno> ListarAlumnoxSalon(int idsalon);
 }

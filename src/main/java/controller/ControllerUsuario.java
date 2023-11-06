@@ -54,9 +54,10 @@ public class ControllerUsuario extends HttpServlet {
 		String next = "/index.jsp"; 
 		
 		//Revisamos
-		if(respuesta!=null){
+		if(respuesta!=null & respuesta.getRol()!=null){
 			switch(respuesta.getRol()){
 				case "Admin":next = "/indexAdmin.jsp";break;
+				case "Profesor":next = "ControllerProfesor?value=Sesion&id="+respuesta.getProfesor().getIdprofesor();break;
 				default:break;
 			}
 			

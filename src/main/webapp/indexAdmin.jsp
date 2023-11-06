@@ -10,6 +10,11 @@
 
 
 <body class="bg-dark text-light"  align="center">
+<a href="index.jsp" class="btn btn-outline-light m-1 py-2 position-absolute top-0 end-0"
+onclick="return confirm('¿Estás seguro de que deseas cerrar sesión?');">
+<i class="fa-solid fa-right-from-bracket"></i></a>
+
+
 
 <h2 class="my-4" align="center">Bienvenido Admin!</h2>
 

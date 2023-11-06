@@ -11,22 +11,22 @@ public class TestUsuario {
 		DaoUsuario crud = new DaoUsuario();
 		
 		//asignamos valores
-		usuario.setUser("nuevo");
-		usuario.setPassword("prueba2");
+		usuario.setUser("raven");
+		usuario.setPassword("nevermore");
 		
 		//Profesor profesor = new Profesor();
 		//usuario.setProfesor(profesor);
 		
-		/*
+		
 		//validamos al usuario
-		//Usuario respuesta = crud.ValidarUsuario(usuario);
+		Usuario respuesta = crud.ValidarUsuario(usuario);
 		
 		if(respuesta != null){
 			System.out.println("- " + respuesta.getIdusuario());
 			System.out.println("- " + respuesta.getRol());
 		}
 		else System.out.println(":c");
-		*/
+		
 		
 		//Registro de usuario
 		//crud.RegistrarUsuario(usuario);

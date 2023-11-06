@@ -70,8 +70,9 @@ public class TestSalon {
 		
 	*/
 		
-		dao.BuscarSalon(965);
-		List<Salon> lista = dao.ListarSalon(true);
+		//dao.BuscarSalon(965);
+		//List<Salon> lista = dao.ListarSalon(true);
+		List<Salon> lista = dao.ListarSalonesCurso(35);
 		
 		for(Salon sal:lista){
 			System.out.println(sal.getIdsalon()+"- "+sal.getCurso().getNombre()+" --- "+

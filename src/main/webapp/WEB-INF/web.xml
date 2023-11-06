@@ -40,6 +40,12 @@
   	<description></description>
   	<servlet-class>controller.ControllerSalones</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerNotas</servlet-name>
+  	<display-name>ControllerNotas</display-name>
+  	<description></description>
+  	<servlet-class>controller.ControllerNotas</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerUsuario</servlet-name>
   	<url-pattern>/ControllerUsuario</url-pattern>
@@ -63,5 +69,9 @@
   <servlet-mapping>
   	<servlet-name>ControllerSalones</servlet-name>
   	<url-pattern>/ControllerSalones</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerNotas</servlet-name>
+  	<url-pattern>/ControllerNotas</url-pattern>
   </servlet-mapping>
 </web-app>

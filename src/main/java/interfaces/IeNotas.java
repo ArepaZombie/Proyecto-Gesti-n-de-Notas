@@ -10,4 +10,5 @@ public interface IeNotas {
 	public void ActualizarNota(Nota c);
 	public Nota BuscarNota(int idsalon,int idalumno);
 	public List<Nota> ListarNotas();
+	public List<Nota> ListarNotasxAlumno(int idalumno);
 }

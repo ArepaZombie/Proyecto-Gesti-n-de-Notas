@@ -11,4 +11,6 @@ public interface IeSalon {
 	public Salon BuscarSalon(int id);
 	public List<Salon> ListarSalon(Boolean activos);
 	public List<Salon> ListarSalonesDisponibles(String turno, int ciclo, int idcarrera);
+	public List<Salon> ListarSalonesProfesor(int idprofesor);
+	public List<Salon> ListarSalonesCurso(int idcurso);
 }

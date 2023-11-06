@@ -10,4 +10,5 @@ public interface IeCurso {
 	public void ActualizarCurso(Curso c);
 	public Curso BuscarCurso(int id);
 	public List<Curso> ListarCurso(Boolean activos);
+	public List<Curso> ListarCursoxCarrera(int idcarrera);
 }

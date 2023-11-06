@@ -1,6 +1,9 @@
 package model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.util.Locale;
+
 import javax.persistence.*;
 
 
@@ -83,5 +86,15 @@ public class Nota implements Serializable {
 	public void setSalon(Salon salon) {
 		this.salon = salon;
 	}
-
+	public double getPromedio(){
+		Locale.setDefault(Locale.US);
+		int cantidadnotas = 0;		
+		if (this.nota1 > 0) cantidadnotas++;
+		if (this.nota2 > 0) cantidadnotas++;
+		if (this.nota3 > 0) cantidadnotas++;
+		if (cantidadnotas==0) return 0;
+		
+		double promedio = (this.nota1 + this.nota2 + this.nota3)/cantidadnotas;
+		return Double.parseDouble(String.format("%.2f", promedio));
+	}
 }
