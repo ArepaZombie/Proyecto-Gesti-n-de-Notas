@@ -36,7 +36,7 @@ if(mensaje!=null){%>
 <table class="table table-striped table-dark table-hover table-bordered rounded align-middle">
 
 	<tr>
-		<th style="width:60%">Alumno</th>
+		<th style="width:55%">Alumno</th>
 		<th class="text-center">Nota 1</th>
 		<th class="text-center">Nota 2</th>
 		<th class="text-center">Nota 3</th>
@@ -48,19 +48,39 @@ List<Nota> listado = s.getNotas();
 if(listado!=null){
 	for(Nota n:listado){
 		%>
-	<tr >	
-		<td><%=n.getAlumno().getNombre() %> <%=n.getAlumno().getApellido() %></td>
-		<td class="text-center"><%=n.getNota1() %> </td>
-		<td class="text-center"><%=n.getNota2() %> </td>
-		<td class="text-center"><%=n.getNota3() %> </td>
-		<td class="text-center"><%=n.getPromedio() %> </td>
-		
-		<td class="text-center">		
-			<a class="btn btn-success btn-sm" href="ControllerNotas?value=Buscar&idalumno=<%=n.getId().getIdalumno()%>&idsalon=<%=n.getId().getIdsalon()%>">
-				<i class="fa-solid fa-square-check"></i>	
-			</a>
-		</td>
-	</tr>
+		<tr>	
+		<form method="post" action="ControllerProfesor">
+			<td><%=n.getAlumno().getNombre() %> <%=n.getAlumno().getApellido() %></td>
+			<td class="align-center">
+				<input type="number" class="form-control w-75 mx-auto" name="nota1"  
+                        min="0" max="20" step="0.1" value="<%=n.getNota1() %>"
+                        <%if(n.getNota1()>0) {%> readonly <%} %> >
+			</td>
+			
+			<td class="align-center">
+				<input type="number" class="form-control w-75 mx-auto" name="nota2"  
+                        min="0" max="20" step="0.1" value="<%=n.getNota2() %>"
+                        <%if(n.getNota2()>0) {%> readonly <%} %> >
+			</td>
+			
+			<td class="align-center">
+				<input type="number" class="form-control w-75 mx-auto" name="nota3"  
+                        min="0" max="20" step="0.1" value="<%=n.getNota3() %>"
+                        <%if(n.getNota3()>0) {%> readonly <%} %> >
+			</td>			
+				<td class="text-center"><%=n.getPromedio() %> 
+	            <input type="hidden" name="idalumno"  value="<%=n.getId().getIdalumno() %>">
+	            <input type="hidden" name="idsalon"  value="<%=n.getId().getIdsalon() %>">
+	            <input type="hidden" name="idprofesor"  value="<%=p.getIdprofesor() %>">
+			</td>
+            
+			<td class="text-center">
+				<button type="submit" name="value" value="IngresarNota" class="btn btn-success btn-sm">
+						<i class="fa-solid fa-square-check"></i>
+				</button>		
+			</td>
+		</form>
+		</tr>
 		<% 
 	}
 }

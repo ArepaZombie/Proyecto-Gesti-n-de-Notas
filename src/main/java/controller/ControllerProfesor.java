@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DaoNota;
 import dao.DaoProfesor;
-import dao.DaoSalon;
-import model.Alumno;
 import model.Nota;
+import model.NotaPK;
 import model.Profesor;
 import model.Salon;
 import model.Usuario;
@@ -44,13 +44,39 @@ public class ControllerProfesor extends HttpServlet {
 			case "Borrar": BorrarProfesor(request,response);break;
 			case "Sesion": IniciarSesionProfesor(request,response);break;
 			case "Notas": ListaNotas(request,response);break;
+			case "IngresarNota": IngresarNotas(request,response);break;
 			default:break;
 		}
 		//System.out.println(value);
 	}
 
-    
-    private void ListaNotas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void IngresarNotas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	//instanciamos las clases
+    	DaoNota dao = new DaoNota();
+    	Nota n = new Nota();
+    	
+    	//Recuperamos los datos
+    	int idprofesor = Integer.parseInt(request.getParameter("idprofesor"));
+    	
+		NotaPK id = new NotaPK();
+		id.setIdalumno(Integer.parseInt(request.getParameter("idalumno")));
+		id.setIdsalon(Integer.parseInt(request.getParameter("idsalon")));
+		n.setId(id);
+		
+		n.setNota1(Double.parseDouble(request.getParameter("nota1")));
+		n.setNota2(Double.parseDouble(request.getParameter("nota2")));
+		n.setNota3(Double.parseDouble(request.getParameter("nota3")));
+		
+		//Mandamos la data
+		dao.ActualizarNota(n);
+		request.setAttribute("mensaje", "Nota actualizada!");
+		
+		//Nos devolvemos al listado
+    	request.getRequestDispatcher("ControllerProfesor?value=Notas&salon="+id.getIdsalon()+"&id="+idprofesor).forward(request, response);
+		
+	}
+
+	private void ListaNotas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	//instanciamos las clases
     	DaoProfesor dao = new DaoProfesor();
 

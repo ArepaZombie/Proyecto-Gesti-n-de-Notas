@@ -67,7 +67,7 @@ if(listado!=null){
 			</a>
 		</td>
 		<td class="text-center">		
-			<a class="btn btn-primary btn-sm" href="ControllerProfesor?value=Buscar&id=<%=p.getIdprofesor()%>">
+			<a class="btn btn-primary btn-sm" href="ControllerProfesor?value=Buscar&user=Admin&id=<%=p.getIdprofesor()%>">
 				<i class="fa-solid fa-pen-to-square"></i>			
 			</a>
 			<a class="btn btn-danger btn-sm" href="ControllerProfesor?value=Borrar&id=<%=p.getIdprofesor()%>"

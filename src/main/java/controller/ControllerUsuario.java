@@ -58,12 +58,14 @@ public class ControllerUsuario extends HttpServlet {
 			switch(respuesta.getRol()){
 				case "Admin":next = "/indexAdmin.jsp";break;
 				case "Profesor":next = "ControllerProfesor?value=Sesion&id="+respuesta.getProfesor().getIdprofesor();break;
+				case "Alumno":next = "ControllerAlumno?value=Sesion&id="+respuesta.getAlumno().getIdalumno();break;
 				default:break;
 			}
 			
 		}
 		else request.setAttribute("mensaje", "Datos incorrectos");
 		
+		request.setAttribute("usuario", u);
 		request.getRequestDispatcher(next).forward(request, response);
 	}
 

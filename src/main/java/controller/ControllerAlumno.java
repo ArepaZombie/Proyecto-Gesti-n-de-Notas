@@ -42,9 +42,27 @@ public class ControllerAlumno extends HttpServlet {
 			case "Buscar": BuscarAlumno(request,response);break;
 			case "Actualizar": ActualizarAlumno(request,response);break;
 			case "Borrar": BorrarAlumno(request,response);break;
+			case "Sesion": IniciarSesioAlumno(request,response);break;
 			default:break;
 		}
 		//System.out.println(value);
+	}
+
+	private void IniciarSesioAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//instanciamos las clases
+    	DaoAlumno dao = new DaoAlumno();
+
+    	//Buscamos la info
+    	int id = Integer.parseInt(request.getParameter("id"));
+    	Alumno p = dao.BuscarAlumno(id);
+		
+    	//Mandamos la data
+		request.setAttribute("alumno", p);
+		
+		//Vamos al index
+		request.getRequestDispatcher("indexAlumno.jsp").forward(request, response);
+
+		
 	}
 
 	private void ListarAlumnosxSalon(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -180,7 +198,7 @@ public class ControllerAlumno extends HttpServlet {
 		ListarAlumnos(request, response);
 	}
 
-	private void ListarAlumnos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void ListarAlumnos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		//instanciamos el dao
     	DaoAlumno dao = new DaoAlumno();
 		String trash = request.getParameter("trash");
@@ -212,4 +230,6 @@ public class ControllerAlumno extends HttpServlet {
 		doGet(request, response);
 	}
 
+
+	
 }
