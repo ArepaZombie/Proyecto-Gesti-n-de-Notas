@@ -133,8 +133,13 @@ public class ControllerNotas extends HttpServlet {
 		p.setId(id);
 		
 		//Mandamos la data
-		dao.RegistrarNota(p);
-		request.setAttribute("mensaje", "Nota registrado!");
+		String r = dao.RegistrarNota(p);
+		String mensaje;
+		
+		if(r=="inscrito") mensaje="Alumno inscrito";
+		else mensaje="El alumno ya estaba inscrito";
+		
+		request.setAttribute("mensaje", mensaje);
 		
 		//Nos devolvemos al listado
 		ListarNotas(request, response);

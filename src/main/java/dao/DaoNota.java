@@ -15,7 +15,9 @@ import model.Salon;
 public class DaoNota implements IeNotas {
 
 	@Override
-	public void RegistrarNota(Nota c) {
+	public String RegistrarNota(Nota c) {
+		String mensaje;
+		
 		//conexión con unidad de persistencia
 		EntityManagerFactory conex=Persistence.createEntityManagerFactory("ProyectoGestionNotas");
 		//gestionamos la entidad
@@ -23,6 +25,10 @@ public class DaoNota implements IeNotas {
 		//iniciamos la transaccion
 		em.getTransaction().begin();
 
+		//Comprobamos que no este inscrito
+		Nota n = BuscarNota(c.getId().getIdsalon(), c.getId().getIdalumno());
+		if(n==null){
+			
 		//Buscamos la info del salon y el alumno
 		DaoSalon dao= new DaoSalon();
 		DaoAlumno daoa= new DaoAlumno();
@@ -40,12 +46,14 @@ public class DaoNota implements IeNotas {
 		
 		//Mandamos los objetos
 		em.persist(c);
+		mensaje="inscrito";
+		}else mensaje="existe";
 		
 		//Confirmamos 
 		em.getTransaction().commit();
 		//Cerramos
 		em.close();
-
+		return mensaje;
 	}
 
 

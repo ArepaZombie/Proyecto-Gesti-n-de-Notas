@@ -10,8 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DaoAlumno;
 import dao.DaoCarrera;
+import dao.DaoNota;
+import dao.DaoSalon;
 import model.Alumno;
 import model.Carrera;
+import model.Nota;
+import model.NotaPK;
+import model.Salon;
 import model.Usuario;
 
 /**
@@ -43,9 +48,55 @@ public class ControllerAlumno extends HttpServlet {
 			case "Actualizar": ActualizarAlumno(request,response);break;
 			case "Borrar": BorrarAlumno(request,response);break;
 			case "Sesion": IniciarSesioAlumno(request,response);break;
+			case "PreInscripcion": PreInscribirAlumno(request,response);break;
+			case "Inscribir": InscribirAlumno(request,response);break;
 			default:break;
 		}
 		//System.out.println(value);
+	}
+
+	private void InscribirAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//instanciamos las clases
+    	DaoNota dao = new DaoNota();
+    	Nota p = new Nota();
+    	NotaPK id = new NotaPK();
+    	int idalumno = Integer.parseInt(request.getParameter("alumno"));
+    	//Recuperamos los daots
+		id.setIdsalon(Integer.parseInt(request.getParameter("salon")));
+		id.setIdalumno(idalumno);
+		p.setId(id);
+		
+		//Mandamos la data
+		String r = dao.RegistrarNota(p);
+		String mensaje;
+		
+		if(r=="inscrito") mensaje="Alumno inscrito";
+		else mensaje="El alumno ya estaba inscrito";
+		
+		request.setAttribute("mensaje", mensaje);
+		
+		//Nos devolvemos al listado
+		request.getRequestDispatcher("ControllerAlumno?value=Sesion&id="+idalumno).forward(request, response);
+		
+	}
+
+	private void PreInscribirAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//instanciamos las clases
+    	DaoAlumno dao = new DaoAlumno();
+    	DaoSalon daos = new DaoSalon();
+
+    	//Buscamos la info
+    	int id = Integer.parseInt(request.getParameter("id"));
+    	Alumno p = dao.BuscarAlumno(id);
+		
+    	List<Salon> s = daos.ListarSalonesDisponibles(p.getTurno(), p.getCiclo(), p.getCarrera().getIdcarrera());
+    	
+    	//Mandamos la data
+		request.setAttribute("alumno", p);
+		request.setAttribute("salones", s);
+		
+		//Vamos al index
+		request.getRequestDispatcher("inscripcionAlumno.jsp").forward(request, response);
 	}
 
 	private void IniciarSesioAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

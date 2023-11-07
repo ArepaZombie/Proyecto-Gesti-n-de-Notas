@@ -25,11 +25,21 @@ onclick="return confirm('¿Estás seguro de que deseas cerrar sesión?');">
 <i class="fa-solid fa-right-from-bracket"></i></a>
 
 
-<h2 class="my-4" align="center">Bienvenido <%=a.getNombre() %> <%=a.getApellido() %></h2>
+<% String mensaje = (String)request.getAttribute("mensaje"); 
+if(mensaje!=null){%>
+<p align="center" class="alert alert-success p-0 w-75 mx-auto"><%=mensaje %> </p>
+<%} %>
+
+
+<h2 class="my-1" align="center">Bienvenido</h2>
+<h2  align="center"><%=a.getNombre() %> <%=a.getApellido() %></h2>
+<h5 align="center"><%=a.getCarrera().getNombre() %> </h5>
+<h5 align="center">Turno: <%=a.getTurno() %> - Ciclo: <%=a.getCiclo() %> </h5>
+
 <h4 align="center">Tus Notas</h4>
 
 
-<div class="container w-75automx-5">
+<div class="container w-75 mx-auto text-center">
 <table class="table table-striped table-dark table-hover table-bordered rounded align-middle">
 
 	<tr>
@@ -60,9 +70,13 @@ if(listado!=null){
 }
 %>
 </table>
+
+<a class="btn btn-success mx-auto my-1 text-center" align="center"
+	href="ControllerAlumno?value=PreInscripcion&id=<%=a.getIdalumno() %>">
+	<i class="fa-solid fa-circle-plus"></i>
+	Matricularte en Curso
+</a>
 </div>
-
-
 
 
 
